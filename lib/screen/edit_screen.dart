@@ -1,7 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
-import 'package:todolist/data.dart';
+import 'package:provider/provider.dart';
+import 'package:todolist/data/data.dart';
+import 'package:todolist/data/repo/repository.dart';
 import 'package:todolist/main.dart';
 
 class EditScreen extends StatefulWidget {
@@ -16,8 +18,6 @@ class _EditScreenState extends State<EditScreen> {
   late final TextEditingController _taskContentController =
       TextEditingController(text: widget.task.content);
 
-  final Box<TaskEntitiy> box = Hive.box(boxName);
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,11 +29,9 @@ class _EditScreenState extends State<EditScreen> {
             widget.task.content = _taskContentController.text;
             widget.task.isCompleted = false;
             widget.task.priority = Priority.normal;
-            if (widget.task.isInBox) {
-              widget.task.save();
-            } else {
-              box.add(widget.task);
-            }
+            final repository =
+                Provider.of<Repository<TaskEntitiy>>(context, listen: false);
+            repository.createOrUpdate(widget.task);
             Navigator.of(context).pop();
           },
           label: Row(
