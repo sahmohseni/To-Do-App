@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -7,14 +6,13 @@ import 'package:provider/provider.dart';
 import 'package:todolist/data/data.dart';
 import 'package:todolist/data/repo/repository.dart';
 import 'package:todolist/data/source/hive_task_data_source.dart';
-import 'package:todolist/screen/edit_screen.dart';
-import 'package:todolist/screen/home_screen.dart';
-import 'package:todolist/widget.dart';
+
+import 'package:todolist/screen/home/home_screen.dart';
 
 const boxName = 'taskBox';
 
 final Color backGroundColor = Colors.white.withOpacity(0.9);
-final Color primaryColor = Color(0xff794CFF);
+const Color primaryColor = Color(0xff794CFF);
 final Color primaryTextColor = Colors.black.withOpacity(0.7);
 final Color secondryTextColor = Colors.white.withOpacity(0.8);
 
@@ -24,7 +22,7 @@ void main() async {
   Hive.registerAdapter(PriorityAdapter());
   await Hive.openBox<TaskEntitiy>(boxName);
   SystemChrome.setSystemUIOverlayStyle(
-      SystemUiOverlayStyle(statusBarColor: primaryColor));
+      const SystemUiOverlayStyle(statusBarColor: primaryColor));
   runApp(ChangeNotifierProvider(
       create: (context) => Repository<TaskEntitiy>(
           localDataSource: HiveTaskDataSource(box: Hive.box(boxName))),

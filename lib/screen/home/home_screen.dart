@@ -5,7 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:todolist/data/data.dart';
 import 'package:todolist/data/repo/repository.dart';
 import 'package:todolist/main.dart';
-import 'package:todolist/screen/edit_screen.dart';
+import 'package:todolist/screen/edit/edit_screen.dart';
 import 'package:todolist/widget.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -29,7 +29,7 @@ class HomeScreen extends StatelessWidget {
           },
           label: Row(
             children: [
-              Text(
+              const Text(
                 'Add New Task',
                 style: TextStyle(fontWeight: FontWeight.w800),
               ),
