@@ -8,7 +8,7 @@ import 'package:todolist/main.dart';
 
 class EditScreen extends StatefulWidget {
   final TaskEntitiy task;
-  EditScreen({required this.task});
+  const EditScreen({required this.task});
 
   @override
   State<EditScreen> createState() => _EditScreenState();
