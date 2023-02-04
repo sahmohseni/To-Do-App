@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:hive_flutter/adapters.dart';
+
 import 'package:provider/provider.dart';
 import 'package:todolist/data/data.dart';
 import 'package:todolist/data/repo/repository.dart';
@@ -8,7 +8,11 @@ import 'package:todolist/main.dart';
 
 class EditScreen extends StatefulWidget {
   final TaskEntitiy task;
+<<<<<<< HEAD
   const EditScreen({required this.task});
+=======
+  const EditScreen({super.key, required this.task});
+>>>>>>> blocdev_2
 
   @override
   State<EditScreen> createState() => _EditScreenState();
@@ -36,7 +40,7 @@ class _EditScreenState extends State<EditScreen> {
           },
           label: Row(
             children: [
-              Text(
+              const Text(
                 'Save Changes',
                 style: TextStyle(fontWeight: FontWeight.bold),
               ),
@@ -54,7 +58,7 @@ class _EditScreenState extends State<EditScreen> {
         elevation: 0,
         backgroundColor: Colors.white,
         foregroundColor: primaryTextColor,
-        title: Text(
+        title: const Text(
           'Edit Task',
           style: TextStyle(fontWeight: FontWeight.w800),
         ),

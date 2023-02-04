@@ -6,12 +6,20 @@ import 'package:provider/provider.dart';
 import 'package:todolist/data/data.dart';
 import 'package:todolist/data/repo/repository.dart';
 import 'package:todolist/data/source/hive_task_data_source.dart';
+<<<<<<< HEAD
+=======
+
+>>>>>>> blocdev_2
 import 'package:todolist/screen/home/home_screen.dart';
 
 const boxName = 'taskBox';
 
 final Color backGroundColor = Colors.white.withOpacity(0.9);
+<<<<<<< HEAD
 final Color primaryColor = const Color(0xff794CFF);
+=======
+const Color primaryColor = Color(0xff794CFF);
+>>>>>>> blocdev_2
 final Color primaryTextColor = Colors.black.withOpacity(0.7);
 final Color secondryTextColor = Colors.white.withOpacity(0.8);
 
@@ -21,7 +29,7 @@ void main() async {
   Hive.registerAdapter(PriorityAdapter());
   await Hive.openBox<TaskEntitiy>(boxName);
   SystemChrome.setSystemUIOverlayStyle(
-      SystemUiOverlayStyle(statusBarColor: primaryColor));
+      const SystemUiOverlayStyle(statusBarColor: primaryColor));
   runApp(ChangeNotifierProvider(
       create: (context) => Repository<TaskEntitiy>(
           localDataSource: HiveTaskDataSource(box: Hive.box(boxName))),

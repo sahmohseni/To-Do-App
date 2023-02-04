@@ -16,6 +16,10 @@ class HomeScreen extends StatelessWidget {
   final TextEditingController textFiledSearchController =
       TextEditingController();
 
+<<<<<<< HEAD
+=======
+  HomeScreen({super.key});
+>>>>>>> blocdev_2
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,7 +35,7 @@ class HomeScreen extends StatelessWidget {
           },
           label: Row(
             children: [
-              Text(
+              const Text(
                 'Add New Task',
                 style: TextStyle(fontWeight: FontWeight.w800),
               ),
@@ -41,9 +45,15 @@ class HomeScreen extends StatelessWidget {
               Icon(CupertinoIcons.add_circled)
             ],
           )),
+<<<<<<< HEAD
       body: BlocProvider(
         create: (context) =>
             TasklistBloc(context.read<Repository<TaskEntitiy>>()),
+=======
+      body: BlocProvider<TaskListBloc>(
+        create: (context) =>
+            TaskListBloc(context.read<Repository<TaskEntitiy>>()),
+>>>>>>> blocdev_2
         child: SafeArea(
           child: Column(
             children: [
@@ -90,8 +100,13 @@ class HomeScreen extends StatelessWidget {
                         child: TextField(
                           onChanged: (value) {
                             context
+<<<<<<< HEAD
                                 .read<TasklistBloc>()
                                 .add(TaskListSearch(searchterm: value));
+=======
+                                .read<TaskListBloc>()
+                                .add(TaskListSerach(value));
+>>>>>>> blocdev_2
                           },
                           decoration: InputDecoration(
                               border: OutlineInputBorder(
@@ -107,6 +122,7 @@ class HomeScreen extends StatelessWidget {
               const SizedBox(
                 height: 0,
               ),
+<<<<<<< HEAD
               Expanded(child: BlocBuilder<TasklistBloc, TaskListState>(
                 builder: (context, state) {
                   if (state is TaskListSuccess) {
@@ -123,6 +139,27 @@ class HomeScreen extends StatelessWidget {
                   } else {
                     throw Exception(Text('state is invalid'));
                   }
+=======
+              Expanded(child: Consumer<Repository<TaskEntitiy>>(
+                builder: (context, model, child) {
+                  context.read<TaskListBloc>().add(TaskListStart());
+                  return BlocBuilder<TaskListBloc, TaskListState>(
+                    builder: (context, state) {
+                      if (state is TaskListSuccess) {
+                        return TaskList(items: state.items);
+                      } else if (state is TaskListLoading ||
+                          state is TaskListInitial) {
+                        return Center(
+                          child: CircularProgressIndicator(),
+                        );
+                      } else if (state is TaskListEmpty) {
+                        return EmptyState();
+                      } else {
+                        return throw Exception(TaskListError('error'));
+                      }
+                    },
+                  );
+>>>>>>> blocdev_2
                 },
               ))
             ],
@@ -258,9 +295,7 @@ class _FirstRow extends StatelessWidget {
           ),
           MaterialButton(
             onPressed: () {
-              final taskRepositoy =
-                  Provider.of<Repository<TaskEntitiy>>(context, listen: false);
-              taskRepositoy.deleteAll();
+              context.read<TaskListBloc>().add(TaskListDeleteAll());
             },
             child: Row(children: [
               Text('Delete All'),
